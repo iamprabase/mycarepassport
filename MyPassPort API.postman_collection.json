@@ -1,0 +1,558 @@
+{
+	"info": {
+		"_postman_id": "9b0393e5-33f0-4c29-90db-09bbdc02d5b1",
+		"name": "MyPassPort API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"_prabase\", \r\n    \"first_name\": \"Prabesh\",\r\n    \"middle_name\": \"Bikram\", \r\n    \"last_name\": \"Shahi\",\r\n    \"email\": \"_prabase@gmail.com\", \r\n    \"password\": \"password\",\r\n    \"confirm_password\": \"password\",\r\n    \"phone_number\": null, \r\n    \"emergency_contact\": \"\", \r\n    \"ndis_participant\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/create-account",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"create-account"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Profile",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 1|CywTQsI1CaA6FZC6abv0TsR5B4pV9XQGZSX7nhlo",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "avatar",
+							"type": "file",
+							"src": "/C:/Users/prabesh.shahi/Downloads/61f2dd378c671.jpeg"
+						},
+						{
+							"key": "middle_name",
+							"value": "",
+							"type": "default"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/update-profile",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"update-profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Personal Details",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 1|hJL7Pzdc6zqBqOMy5PentXoS78F0JdkRWzP9LSh3",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/get-personal-details",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"get-personal-details"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Personal Details",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 1|hJL7Pzdc6zqBqOMy5PentXoS78F0JdkRWzP9LSh3",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"communication_types\": \"Basic English\",\r\n    \"communication_devices\": \"Braile\",\r\n    \"support_peoples\": [{\"full_name\": \"Prabesh\", \"contact_details\": 9800789000, \"occupation\": \"occ\"}, {\"full_name\": \"Prabesh2\", \"contact_details\": 9800789001, \"occupation\": \"occs\"}],\r\n    \"eating_drinking\": \"Need help to eat and drink\",\r\n    \"eating_drinking_description\": [{\"equipment_used\": \"a\", \"fodd_eat\": \"B\", \"food_allergies\": \"Allerfy\", \"food_aversions\": \"\", \"specify_others\": \"\"}],\r\n    \"hygiene_toileting\": \"Urological Cancer\",\r\n    \"emotional_behavioural_need\": [{\"normal_behaviours\": \"My Religion\", \"distressed_when\": \"Cultural Background\", \"comfort_people\": \"Cultural Restrictions\", \"comforting_things\": \"Other Things To Know\", \"self_soothe\": \"Specify Others\", \"things_safe\": \"Things I do to keep me safe\", \"specify_others\": \"Specify Others\"}],\r\n    \"cultural_religious_need\": [{\"my_religion\": \"My Religion\", \"cultural_background\": \"Cultural Background\", \"cultural_restriction\": \"Cultural Restrictions\", \"other_things\": \"Other Things To Know\", \"specify_others\": \"Specify Others\"}]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/update-personal-details",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"update-personal-details"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload Document",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 1|CywTQsI1CaA6FZC6abv0TsR5B4pV9XQGZSX7nhlo",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "document",
+							"type": "file",
+							"src": "/C:/Users/prabesh.shahi/Downloads/61f2dd378c671.jpeg"
+						},
+						{
+							"key": "folder_id",
+							"value": "1",
+							"type": "default"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/upload-documents-to-folder",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"upload-documents-to-folder"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload Personal Document",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 2|XlUoE9rD9bAc5w1yitP0h67WayGcvogaFJ8K3tPa",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "document[]",
+							"type": "file",
+							"src": [
+								"/C:/Users/prabesh.shahi/Downloads/type_child_entity_sarina_-rating-import-template-20220127120556.xlsx",
+								"/C:/Users/prabesh.shahi/Downloads/type_child_entity_sarina_-rating-export-20220127115737.xlsx"
+							]
+						},
+						{
+							"key": "document_type",
+							"value": "Legal",
+							"type": "default"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/upload-personal-documents",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"upload-personal-documents"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Folder",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 1|CywTQsI1CaA6FZC6abv0TsR5B4pV9XQGZSX7nhlo",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"folder_name\": \"Test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/create-folder",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"create-folder"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Folder Details",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 1|CywTQsI1CaA6FZC6abv0TsR5B4pV9XQGZSX7nhlo",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/my-uploaded-personal-documents",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"my-uploaded-personal-documents"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "My Personal Documents",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 2|XlUoE9rD9bAc5w1yitP0h67WayGcvogaFJ8K3tPa",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/my-uploaded-personal-documents",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"my-uploaded-personal-documents"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 6|01xcd9ipfkMZFSr8sqdz3NHhFi7Km8Qxg7VeTBiB",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/sign-out",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"sign-out"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Profile Details",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 1|CywTQsI1CaA6FZC6abv0TsR5B4pV9XQGZSX7nhlo",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/profile",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"_prabase\",\r\n    \"password\": \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/signin",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
