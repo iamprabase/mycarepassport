@@ -25,6 +25,8 @@ Route::post('/create-account', [AuthenticationController::class, 'createAccount'
 //login user
 Route::post('/signin', [AuthenticationController::class, 'signin']);
 //using middleware
+Route::get('/password-reset-request', 'AuthenticationController@forgotPassword');
+Route::post('/password-reset', 'AuthenticationController@passwordReset');
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/profile', function(Request $request) {
         $user = auth()->user();
@@ -33,6 +35,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     });
     Route::post('/update-profile', [AuthenticationController::class, 'updateProfile']);
     Route::post('/sign-out', [AuthenticationController::class, 'signout']);
+
     Route::post('/create-folder', [ResourceController::class, 'createFolder']);
     Route::get('/get-folder-details', [ResourceController::class, 'getFolderDetails']);
     Route::post('/upload-documents-to-folder', [ResourceController::class, 'uploadDocuments']);
@@ -40,4 +43,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/update-personal-details', [ResourceController::class, 'updatePersonalDetails']);
     Route::get('/my-uploaded-personal-documents', [ResourceController::class, 'getUploadPersonalDocuments']);
     Route::post('/upload-personal-documents', [ResourceController::class, 'uploadPersonalDocuments']);
+    Route::get('/individual-folder-detail', [ResourceController::class, 'getInidividualFolderDetails']);
 });

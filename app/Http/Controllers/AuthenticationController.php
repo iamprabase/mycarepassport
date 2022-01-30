@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use Illuminate\Http\Request;
 use Validator;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -127,6 +129,98 @@ class AuthenticationController extends Controller
         $path = $img->storeAs('public/avatars',$fileName);
 
         return $path;
+    }
+
+    public function forgotPassword(Request $request) {
+        $validate = Validator::make($request->all(), [
+            'email' => 'required',
+        ]);
+        if ($validate->fails()) {
+            return response([
+                'message' => $validate->errors(),
+            ], 422);
+        }
+
+        $credentials = $request->only('email');
+
+        $token = $this->sendResetToken($credentials);
+
+        return response()->json(["msg" => 'Reset password token.', 'link' => $token]);
+    }
+
+    public function passwordReset(Request $request) {
+        $validate = Validator::make($request->all(), [
+            'email' => 'required',
+            'token' => 'required',
+            'password' => 'required',
+        ]);
+        if ($validate->fails()) {
+            return response([
+                'message' => $validate->errors(),
+            ], 422);
+        }
+
+        $credentials = $request->password;
+        $token = DB::table('password_resets')->whereEmail($request->email)->first();
+        if($token->token!=$request->token) {
+            return response()->json([
+                "message" => "Invalid Token.",
+            ], 400);
+        }
+
+        $user = User::whereEmail($request->email)->orWhere('name', 'LIKE', $request->email)->update([
+            'password' => Hash::make($credentials)
+        ]);
+
+        if ($user) {
+            DB::table('password_resets')->whereEmail($request->email)->delete();
+            return response()->json([
+                'message' => "Password Updated.",
+            ]);
+        }
+
+        return response()->json([
+            "message" => "Failed Resetting.",
+        ], 400);
+    }
+
+    private function sendResetToken($credentials) {
+        $token_exists = DB::table('password_resets')->whereEmail($credentials['email'])->first();
+        $token = rand(2500, 10000);
+        if($token_exists) {
+            DB::table('password_resets')->whereEmail($credentials['email'])->update([
+                'email' => $credentials['email'],
+                'token' => $token,
+                'created_at' => Carbon::now(),
+            ]);
+        } else {
+            DB::table('password_resets')->insert([
+                'email' => $credentials['email'],
+                'token' => $token,
+                'created_at' => Carbon::now(),
+            ]);
+        }
+
+        return $token;
+    }
+
+    public function reset() {
+        $credentials = request()->validate([
+            'email' => 'required|email',
+            'token' => 'required|string',
+            'password' => 'required|string|confirmed'
+        ]);
+
+        $reset_password_status = Password::reset($credentials, function ($user, $password) {
+            $user->password = $password;
+            $user->save();
+        });
+
+        if ($reset_password_status == Password::INVALID_TOKEN) {
+            return response()->json(["msg" => "Invalid token provided"], 400);
+        }
+
+        return response()->json(["msg" => "Password has been successfully changed"]);
     }
 
 }

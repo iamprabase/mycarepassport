@@ -77,13 +77,30 @@ class ResourceController extends Controller
         return $folders;
     }
 
+    public function getInidividualFolderDetails(Request $request) {
+        $folders = DocumentFolder::with('documents')
+        ->where('user_id', Auth::user()->id)
+        ->where('folder_name', 'LIKE', '%'.$request->folder_name.'%')
+        ->get();
+        foreach($folders as $folder) {
+            foreach($folder->documents as $document) {
+                $document->file_path = config('app.url').\Storage::url($document->file_path);
+            }
+        }
+        return response()->json([
+            "message" => "Folder Details.",
+            "data" => $folders
+        ]);
+        return $folders;
+    }
+
     public function updatePersonalDetails(Request $request) {
-        $communication_types = $request->communication_types;
-        $communication_devices = $request->communication_devices;
+        $communication_types = json_encode($request->communication_types);
+        $communication_devices = json_encode($request->communication_devices);
         $support_peoples = json_encode($request->support_peoples);
-        $eating_drinking = $request->eating_drinking;
+        $eating_drinking = json_encode($request->eating_drinking);
         $eating_drinking_description = json_encode($request->eating_drinking_description);
-        $hygiene_toileting = $request->hygiene_toileting;
+        $hygiene_toileting = json_encode($request->hygiene_toileting);
         $emotional_behavioural_need = json_encode($request->emotional_behavioural_need);
         $cultural_religious_need = json_encode($request->cultural_religious_need);
         
@@ -102,6 +119,10 @@ class ResourceController extends Controller
         $details->cultural_religious_need = json_decode($details->cultural_religious_need);
         $details->eating_drinking_description = json_decode($details->eating_drinking_description);
         $details->support_peoples = json_decode($details->support_peoples);
+        $details->communication_types = json_decode($details->communication_types);
+        $details->communication_devices = json_decode($details->communication_devices);
+        $details->eating_drinking = json_decode($details->eating_drinking);
+        $details->hygiene_toileting = json_decode($details->hygiene_toileting);
         
         return response()->json([
             "message" => "Personal Details.",

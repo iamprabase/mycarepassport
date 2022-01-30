@@ -155,7 +155,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"communication_types\": \"Basic English\",\r\n    \"communication_devices\": \"Braile\",\r\n    \"support_peoples\": [{\"full_name\": \"Prabesh\", \"contact_details\": 9800789000, \"occupation\": \"occ\"}, {\"full_name\": \"Prabesh2\", \"contact_details\": 9800789001, \"occupation\": \"occs\"}],\r\n    \"eating_drinking\": \"Need help to eat and drink\",\r\n    \"eating_drinking_description\": [{\"equipment_used\": \"a\", \"fodd_eat\": \"B\", \"food_allergies\": \"Allerfy\", \"food_aversions\": \"\", \"specify_others\": \"\"}],\r\n    \"hygiene_toileting\": \"Urological Cancer\",\r\n    \"emotional_behavioural_need\": [{\"normal_behaviours\": \"My Religion\", \"distressed_when\": \"Cultural Background\", \"comfort_people\": \"Cultural Restrictions\", \"comforting_things\": \"Other Things To Know\", \"self_soothe\": \"Specify Others\", \"things_safe\": \"Things I do to keep me safe\", \"specify_others\": \"Specify Others\"}],\r\n    \"cultural_religious_need\": [{\"my_religion\": \"My Religion\", \"cultural_background\": \"Cultural Background\", \"cultural_restriction\": \"Cultural Restrictions\", \"other_things\": \"Other Things To Know\", \"specify_others\": \"Specify Others\"}]\r\n}",
+					"raw": "{\r\n    \"communication_types\": [\"Basic English\"],\r\n    \"communication_devices\": [\"Braile\"],\r\n    \"support_peoples\": [{\"full_name\": \"Prabesh\", \"contact_details\": 9800789000, \"occupation\": \"occ\"}, {\"full_name\": \"Prabesh2\", \"contact_details\": 9800789001, \"occupation\": \"occs\"}],\r\n    \"eating_drinking\": [\"Need help to eat and drink\"],\r\n    \"eating_drinking_description\": [{\"equipment_used\": \"a\", \"fodd_eat\": \"B\", \"food_allergies\": \"Allerfy\", \"food_aversions\": \"\", \"specify_others\": \"\"}],\r\n    \"hygiene_toileting\": [\"Urological Cancer\"],\r\n    \"emotional_behavioural_need\": [{\"normal_behaviours\": \"My Religion\", \"distressed_when\": \"Cultural Background\", \"comfort_people\": \"Cultural Restrictions\", \"comforting_things\": \"Other Things To Know\", \"self_soothe\": \"Specify Others\", \"things_safe\": \"Things I do to keep me safe\", \"specify_others\": \"Specify Others\"}],\r\n    \"cultural_religious_need\": [{\"my_religion\": \"My Religion\", \"cultural_background\": \"Cultural Background\", \"cultural_restriction\": \"Cultural Restrictions\", \"other_things\": \"Other Things To Know\", \"specify_others\": \"Specify Others\"}]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -298,7 +298,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer 1|CywTQsI1CaA6FZC6abv0TsR5B4pV9XQGZSX7nhlo",
+						"value": "Bearer 3|dIbwP6dujMjMOewDV3U0Afo4b2rcnjp3IfH2qGoj",
 						"type": "default"
 					},
 					{
@@ -309,7 +309,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"folder_name\": \"Test\"\r\n}",
+					"raw": "{\r\n    \"folder_name\": \"Afest\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -549,6 +549,133 @@
 					"path": [
 						"api",
 						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Forgot Password",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"_prabase\",\r\n    \"password\": \"passwordnew\",\r\n    \"token\": 8026\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/password-reset",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"password-reset"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ForgotPassword",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"_prabase\",\r\n    \"password\": \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/password-reset-request",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"password-reset-request"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Folder Details By Name",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 3|dIbwP6dujMjMOewDV3U0Afo4b2rcnjp3IfH2qGoj",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"folder_name\": \"Test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/individual-folder-detail",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"individual-folder-detail"
 					]
 				}
 			},
