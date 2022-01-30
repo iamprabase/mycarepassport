@@ -43,5 +43,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/update-personal-details', [ResourceController::class, 'updatePersonalDetails']);
     Route::get('/my-uploaded-personal-documents', [ResourceController::class, 'getUploadPersonalDocuments']);
     Route::post('/upload-personal-documents', [ResourceController::class, 'uploadPersonalDocuments']);
-    Route::get('/individual-folder-detail', [ResourceController::class, 'getInidividualFolderDetails']);
+    Route::post('/individual-folder-detail', [ResourceController::class, 'getInidividualFolderDetails']);
 });
