@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AdvancedDirective;
 use App\DocumentFolder;
 use App\DocumentUpload;
 use App\User;
@@ -128,6 +129,44 @@ class ResourceController extends Controller
             "message" => "Personal Details.",
             "data" => $details
         ]); 
+    }
+
+    public function advancedDiective(Request $request) {
+        $validate = Validator::make($request->all(), [
+            'advanced_directive' => 'required|boolean',
+            'appointed_guardian' => 'required|boolean',
+            'guardian_details' => 'nullable'
+        ]);
+
+        if ($validate->fails()) {
+            return response([
+                'message' => $validate->errors(),
+            ], 422);
+        }
+
+        $data = [];
+        $data = ['user_id' => Auth::user()->id, 'advanced_directive' => $request->advanced_directive, 'appointed_guardian' => $request->appointed_guardian];
+        $guardian = json_encode($request->guardian_details);
+        $data['guardian_details'] = $guardian;
+        $directives = AdvancedDirective::create($data);
+        $directives->guardian_details = json_decode($directives->guardian_details);
+
+        return response()->json([
+            "message" => "Advanced Directive.",
+            "data" => $directives
+        ]); 
+    }
+
+    public function getAdvancedDirective() {
+        $directives = AdvancedDirective::where('user_id', Auth::user()->id)
+        ->get();
+        foreach($directives as $directive) {
+            $directive->guardian_details = json_decode($directive->guardian_details);
+        }
+        return response()->json([
+            "message" => "Advanced Directive.",
+            "data" => $directives
+        ]);
     }
 
     public function getPersonalDetails() {

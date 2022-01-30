@@ -680,6 +680,73 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Get Advanced Directive",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 5|gvurA2ncAVaDqTxK1SERcQIZKVNuesRbWRodrGLM",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/get-advanced-directives",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"get-advanced-directives"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Advanced Directive",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 5|gvurA2ncAVaDqTxK1SERcQIZKVNuesRbWRodrGLM",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"guardian_details\": [{\"person\": \"Prabesh\", \"contact_details\": 9800789000, \"type\": \"occ\"}, {\"person\": \"Prabesh\", \"contact_details\": 9800789000, \"type\": \"occ\"}],\r\n    \"advanced_directive\": true,\r\n    \"appointed_guardian\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/advanced-directives",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"advanced-directives"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

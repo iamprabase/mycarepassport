@@ -44,4 +44,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/my-uploaded-personal-documents', [ResourceController::class, 'getUploadPersonalDocuments']);
     Route::post('/upload-personal-documents', [ResourceController::class, 'uploadPersonalDocuments']);
     Route::post('/individual-folder-detail', [ResourceController::class, 'getInidividualFolderDetails']);
+    Route::get('/get-advanced-directives', [ResourceController::class, 'getAdvancedDirective']);
+    Route::post('/advanced-directives', [ResourceController::class, 'advancedDiective']);
 });
